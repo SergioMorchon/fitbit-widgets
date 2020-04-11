@@ -1,4 +1,7 @@
-# Fitit Widgets
+# Fitbit Widgets 🧩
+
+[![npm version](https://badge.fury.io/js/fitbit-widgets.svg)](https://www.npmjs.com/package/fitbit-widgets)
+[![CI Status](https://github.com/SergioMorchon/fitbit-widgets/workflows/CI/badge.svg)](https://github.com/SergioMorchon/fitbit-widgets/actions?query=workflow%3ACI)
 
 Create and share your fitbit widgets to be used inside Fitbit apps.
 
