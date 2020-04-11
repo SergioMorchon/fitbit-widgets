@@ -11,7 +11,7 @@ try {
 	process.stdout.write([
 		`Widget ${widgetName} installed in your project.`,
 		`To use it from:`,
-		`\t- .gui: add something like <link rel="import" href="${widgetName}/index.gui" /> to your <defs>`,
+		`\t- .gui: add something like <link rel="import" href="fitbit-widgets/${widgetName}/index.gui" /> to your <defs>`,
 		`\t- .ts or .js: import it from '${name}/dist/${widgetName}'`
 	].join('\n'));
 } catch (e) {
