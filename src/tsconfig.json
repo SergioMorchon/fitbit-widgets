@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "es2015",
+		"lib": ["es5"],
+		"declaration": true,
+		"strict": true,
+		"types": []
+	},
+	"include": ["**/*.ts", "../node_modules/fitbit-sdk-types/types/device"]
+}

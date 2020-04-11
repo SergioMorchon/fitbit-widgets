@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"downlevelIteration": true,
+		"module": "commonjs",
+		"strict": true,
+		"noEmit": true
+	}
+}
