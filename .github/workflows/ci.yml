@@ -25,5 +25,5 @@ jobs:
       - run: npm run prepublishOnly
       - uses: actions/upload-artifact@master
         with:
-          name: dist
-          path: widgets
+          name: widgets
+          path: dist
