@@ -1,8 +1,19 @@
 #!/usr/bin/env node
+const { execSync } = require('child_process');
 const { existsSync, copyFileSync, mkdirSync } = require('fs');
 const { join } = require('path');
 const { getWidgets } = require('../utils/get-widgets');
-const { name: resourcesPackagePath } = require('../../package.json');
+const pkg = require('../../package.json');
+
+const resourcesPackagePath = pkg.name;
+
+/**
+ * @param {string} str
+ */
+const snakeToCamel = str =>
+	str.replace(/([-_][a-z])/g, group =>
+		group.toUpperCase().replace('-', '').replace('_', ''),
+	);
 
 /**
  * @param {string} widgetName
@@ -19,6 +30,10 @@ exports.install = widgetName => {
 	if (!existsSync(resourcesPath)) {
 		throw new Error(`Invalid resources path: ${resourcesPath}`);
 	}
+
+	execSync(`npm install --save ${pkg.name}@${pkg.version}`, {
+		stdio: 'inherit',
+	});
 
 	const targetWidgetsPath = join(resourcesPath, resourcesPackagePath);
 	if (!existsSync(targetWidgetsPath)) {
@@ -42,8 +57,10 @@ exports.install = widgetName => {
 		[
 			`Widget ${widgetName} installed in your project.`,
 			`To use it from:`,
-			`\t- resources/: add something like <link rel="import" href="${resourcesPackagePath}/${widgetName}/index.gui" /> to your <defs>`,
-			`\t- app/: import it from '${widgetName}/dist/${widgetName}'`,
+			`\t- resources/: <link rel="import" href="${resourcesPackagePath}/${widgetName}/index.gui" /> to your <defs>`,
+			`\t- app/: import * as ${snakeToCamel(widgetName)} from '${
+				pkg.name
+			}/dist/${widgetName}'\n`,
 		].join('\n'),
 	);
 };
