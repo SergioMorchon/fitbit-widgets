@@ -8,10 +8,11 @@ for (const widgetName of readdirSync('src')) {
 	}
 
 	for (const file of readdirSync(join('src', widgetName))) {
-		if (file.endsWith('.ts')) {
+		const fileSourcePath = join('src', widgetName, file);
+		if (file.endsWith('.ts') || lstatSync(fileSourcePath).isDirectory()) {
 			continue;
 		}
 
-		copyFileSync(join('src', widgetName, file), join('dist', widgetName, file));
+		copyFileSync(fileSourcePath, join('dist', widgetName, file));
 	}
 }
