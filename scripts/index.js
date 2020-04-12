@@ -1,23 +1,26 @@
 #!/usr/bin/env node
-const { installWidget } = require('./install-widget');
-const { readFileSync } = require('fs');
-const { join } = require('path');
+const [, , commandName, ...commandArgs] = process.argv;
 
-const [, , widgetName] = process.argv;
+/** @type {Object<string, () => void>} */
+const commands = {
+	list: () => require('./commands/list').list(),
+	install: () => require('./commands/install').install(commandArgs[0]),
+};
+
+if (!commandName || commandName === 'help') {
+	process.stdout.write(
+		['Avaiable commands:', ...Object.keys(commands)].join('\n'),
+	);
+	process.exit();
+}
 
 try {
-	installWidget(widgetName);
-	const { name } = JSON.parse(
-		readFileSync(join(__dirname, '..', 'package.json'), 'utf-8'),
-	);
-	process.stdout.write(
-		[
-			`Widget ${widgetName} installed in your project.`,
-			`To use it from:`,
-			`\t- .gui: add something like <link rel="import" href="fitbit-widgets/${widgetName}/index.gui" /> to your <defs>`,
-			`\t- .ts or .js: import it from '${name}/dist/${widgetName}'`,
-		].join('\n'),
-	);
+	const command = commands[commandName];
+	if (!command) {
+		throw new Error(`Unknown command: ${command}`);
+	}
+
+	command();
 } catch (e) {
 	process.stderr.write(e.message);
 }

@@ -5,6 +5,7 @@
 		"downlevelIteration": true,
 		"module": "commonjs",
 		"strict": true,
-		"noEmit": true
+		"noEmit": true,
+		"resolveJsonModule": true
 	}
 }
