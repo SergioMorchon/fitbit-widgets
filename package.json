@@ -1,6 +1,6 @@
 {
 	"name": "fitbit-widgets",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Widgets for Fitbit SDK applications",
 	"bin": "scripts/index.js",
 	"files": [
