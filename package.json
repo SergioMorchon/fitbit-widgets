@@ -32,7 +32,13 @@
 		"eslint": "^6.8.0",
 		"eslint-config-prettier": "^6.10.1",
 		"fitbit-sdk-types": "^4.3.6",
+		"husky": "^4.2.5",
 		"prettier": "^2.0.4",
 		"typescript": "^3.8.3"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run fix-code"
+		}
 	}
 }
