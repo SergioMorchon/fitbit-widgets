@@ -2,7 +2,7 @@
 const { execSync } = require('child_process');
 const { existsSync, copyFileSync, mkdirSync } = require('fs');
 const { join } = require('path');
-const { getWidgets } = require('../utils/get-widgets');
+const { getWidgets } = require('../get-widgets');
 const pkg = require('../../package.json');
 
 const resourcesPackagePath = pkg.name;

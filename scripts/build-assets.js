@@ -1,18 +1,15 @@
 #!/usr/bin/env node
 const { copyFileSync, readdirSync, lstatSync } = require('fs');
 const { join } = require('path');
+const { walkWidgets } = require('./walk-widgets');
 
-for (const widgetName of readdirSync('src')) {
-	if (!lstatSync(join('src', widgetName)).isDirectory()) {
-		continue;
-	}
-
-	for (const file of readdirSync(join('src', widgetName))) {
-		const fileSourcePath = join('src', widgetName, file);
+for (const { name, path } of walkWidgets()) {
+	for (const file of readdirSync(path)) {
+		const fileSourcePath = join(path, file);
 		if (file.endsWith('.ts') || lstatSync(fileSourcePath).isDirectory()) {
 			continue;
 		}
 
-		copyFileSync(fileSourcePath, join('dist', widgetName, file));
+		copyFileSync(fileSourcePath, join('dist', name, file));
 	}
 }

@@ -2,18 +2,19 @@
 	"name": "fitbit-widgets",
 	"version": "0.0.3",
 	"description": "Widgets for Fitbit SDK applications",
-	"bin": "scripts/index.js",
+	"bin": "bin/index.js",
 	"files": [
 		"dist",
-		"scripts"
+		"bin"
 	],
 	"scripts": {
 		"prettier": "prettier **/*.js **/*.ts **/*.json **/*.md **/*.gui -l",
 		"lint": "eslint --max-warnings 0 **/*.ts **/*.js",
 		"check-code": "npm run lint && npm run prettier",
 		"fix-code": "npm run lint -- --fix && npm run prettier -- --write",
-		"build": "tsc -p src --outDir dist && node scripts/build-assets",
-		"prepublishOnly": "npm run check-code && npm run build"
+		"build": "rimraf dist && tsc -p src --outDir dist && node scripts/build-assets",
+		"check-widgets-files": "node scripts/assert-widget-files",
+		"prepublishOnly": "npm run check-code && npm run check-widgets-files && npm run build"
 	},
 	"author": "Sergio Morchón Poveda",
 	"license": "ISC",
@@ -34,6 +35,7 @@
 		"fitbit-sdk-types": "^4.3.6",
 		"husky": "^4.2.5",
 		"prettier": "^2.0.4",
+		"rimraf": "^3.0.2",
 		"typescript": "^3.8.3"
 	},
 	"husky": {

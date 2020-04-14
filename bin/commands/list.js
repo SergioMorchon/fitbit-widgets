@@ -1,4 +1,4 @@
-const { getWidgets } = require('../utils/get-widgets');
+const { getWidgets } = require('../get-widgets');
 
 exports.list = () => {
 	for (const { name } of getWidgets()) {
