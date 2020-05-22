@@ -1,3 +1,5 @@
+import { byId } from '../document';
+
 const A = 'A';
 const B = 'B';
 const C = 'C';
@@ -43,7 +45,7 @@ const render = (
 	classNames: ClassNames,
 	char: string,
 ) => {
-	const segmentsActivated = charMap[char];
+	const segmentsActivated = charMap[char] || {};
 	for (const segmentId of ALL_SEGMENTS) {
 		(segmentElement.getElementById(segmentId) as GraphicsElement).class =
 			segmentId in segmentsActivated ? classNames.on : classNames.off;
@@ -51,41 +53,56 @@ const render = (
 };
 
 // Based on the GUI segments
-const UI_HEIGHT = 205;
-const UI_WIDTH = 110;
+const HEIGHT = 218;
+const WIDTH = 122;
 
 export default (
-	root: GraphicsElement,
-	{ charMap, classNames }: { charMap: CharMap; classNames: ClassNames },
+	root: Element,
+	{
+		charMap,
+		classNames,
+		height,
+		width,
+	}: {
+		charMap: CharMap;
+		classNames: ClassNames;
+		height: number;
+		width: number;
+	},
 ) => {
-	const { groupTransform } = root.getElementById(
+	const { groupTransform } = byId(
 		'7-segment-display-group',
+		root,
 	) as GroupElement;
-	let height = UI_HEIGHT;
-	let width = UI_WIDTH;
+	let value = '';
 	const updateSize = () => {
 		if (groupTransform) {
-			groupTransform.scale.x = height / UI_HEIGHT;
-			groupTransform.scale.y = width / UI_WIDTH;
+			groupTransform.scale.x = width / WIDTH;
+			groupTransform.scale.y = height / HEIGHT;
 		}
 	};
+	updateSize();
 	return {
-		print(char: string) {
-			render(root, charMap, classNames, char);
+		get value() {
+			return value;
+		},
+		set value(newValue: string) {
+			value = newValue[0];
+			render(root, charMap, classNames, value);
+		},
+		get height() {
+			return height;
 		},
 		set height(value: number) {
 			height = value;
 			updateSize();
 		},
-		get height() {
-			return height;
+		get width() {
+			return width;
 		},
 		set width(value: number) {
 			width = value;
 			updateSize();
-		},
-		get width() {
-			return width;
 		},
 	};
 };

@@ -13,7 +13,6 @@ You can pass it a char map to a combination of activated segments.
   </defs>
   <use id="display" href="#7-segment-display" />
 </svg>
-
 ```
 
 **index.css**
@@ -39,12 +38,12 @@ const display = sevenSegmentDisplay(
 	{
 		charMap: DIGITS,
 		classNames: { on: 'on', off: 'off' },
+		height: 205,
+		width: 110,
 	},
 );
-display.height = 150;
-display.width = 80;
 
-display.print('7');
+display.value = '7';
 ```
 
 # Screenshot
