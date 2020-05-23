@@ -18,16 +18,15 @@
 			</g>
 		</g>
 	</symbol>
-
 	<symbol id="7-segment-display">
 		<g id="7-segment-display-group">
-			<use href="#7-segment-display-horizontal-segment" id="A" x="17" y="0" />
-			<use href="#7-segment-display-vertical-segment" id="B" x="93" y="17" />
-			<use href="#7-segment-display-vertical-segment" id="F" x="0" y="17" />
-			<use href="#7-segment-display-horizontal-segment" id="G" x="17" y="94" />
-			<use href="#7-segment-display-vertical-segment" id="C" x="93" y="111" />
-			<use href="#7-segment-display-vertical-segment" id="E" x="0" y="111" />
-			<use href="#7-segment-display-horizontal-segment" id="D" x="17" y="188" />
+			<use href="#7-segment-display-horizontal-segment" id="0" x="17" y="0" />
+			<use href="#7-segment-display-vertical-segment" id="1" x="93" y="17" />
+			<use href="#7-segment-display-vertical-segment" id="2" x="93" y="111" />
+			<use href="#7-segment-display-horizontal-segment" id="3" x="17" y="188" />
+			<use href="#7-segment-display-vertical-segment" id="4" x="0" y="111" />
+			<use href="#7-segment-display-vertical-segment" id="5" x="0" y="17" />
+			<use href="#7-segment-display-horizontal-segment" id="6" x="17" y="94" />
 		</g>
 	</symbol>
 </svg>

@@ -1,53 +1,36 @@
 import { byId } from '../document';
 
-const A = 'A';
-const B = 'B';
-const C = 'C';
-const D = 'D';
-const E = 'E';
-const F = 'F';
-const G = 'G';
-const ALL_SEGMENTS = [A, B, C, D, E, F, G];
+export const A = 1 << 0;
+export const B = 1 << 1;
+export const C = 1 << 2;
+export const D = 1 << 3;
+export const E = 1 << 4;
+export const F = 1 << 5;
+export const G = 1 << 6;
+
+const SEGMENTS_COUNT = 7;
 
 export type CharMap = {
-	[char: string]: {
-		A?: typeof A;
-		B?: typeof B;
-		C?: typeof C;
-		D?: typeof D;
-		E?: typeof E;
-		F?: typeof F;
-		G?: typeof G;
-	};
-};
-
-export const DIGITS: CharMap = {
-	'0': { A, B, C, D, E, F },
-	'1': { B, C },
-	'2': { A, B, G, E, D },
-	'3': { A, B, G, C, D },
-	'4': { F, B, G, C },
-	'5': { A, F, G, C, D },
-	'6': { A, F, G, E, C, D },
-	'7': { A, B, C },
-	'8': { A, B, C, D, E, F, G },
-	'9': { A, B, C, D, F, G },
-};
-
-export type ClassNames = {
-	on: string;
-	off: string;
+	[char: string]: number;
 };
 
 export const print = (
 	element: Element,
 	char: string,
-	{ charMap, classNames }: { charMap: CharMap; classNames: ClassNames },
+	{
+		charMap,
+		setVisibility,
+	}: {
+		charMap: CharMap;
+		setVisibility: (element: GraphicsElement, on: boolean) => void;
+	},
 ) => {
-	const segmentsActivated = charMap[char] || {};
-	for (const segmentId of ALL_SEGMENTS) {
-		(element.getElementById(segmentId) as GraphicsElement).class =
-			segmentId in segmentsActivated ? classNames.on : classNames.off;
+	const segmentsActivated = charMap[char] || 0;
+	for (let i = 0; i < SEGMENTS_COUNT; i++) {
+		setVisibility(
+			byId(`${i}`, element) as GraphicsElement,
+			!!((1 << i) & segmentsActivated),
+		);
 	}
 };
 

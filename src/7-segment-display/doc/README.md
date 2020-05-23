@@ -28,18 +28,20 @@ You can pass it a char map to a combination of activated segments.
 ```
 
 ```typescript
-import document from 'document';
-import * as sevenSegmentDisplay from 'fitbit-widgets/dist/7-segment-display';
 import { byId } from 'fitbit-widgets/dist/document';
+import { resize, print } from 'fitbit-widgets/dist/7-segment-display';
+import digits from 'fitbit-widgets/dist/7-segment-display/digits';
 
 const displayElement = byId('display');
-const display = sevenSegmentDisplay.resize(displayElement, {
+resize(displayElement, {
 	height: 205,
 	width: 110,
 });
-sevenSegmentDisplay.print(displayElement, '7', {
-	charMap: sevenSegmentDisplay.DIGITS,
-	classNames: { on: 'on', off: 'off' },
+print(displayElement, '7', {
+	charMap: digits,
+	setVisibility: (element, on) => {
+		element.class = on ? 'on' : 'off';
+	},
 });
 ```
 
