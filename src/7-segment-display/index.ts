@@ -39,15 +39,14 @@ export type ClassNames = {
 	off: string;
 };
 
-const render = (
-	segmentElement: Element,
-	charMap: CharMap,
-	classNames: ClassNames,
+export const print = (
+	element: Element,
 	char: string,
+	{ charMap, classNames }: { charMap: CharMap; classNames: ClassNames },
 ) => {
 	const segmentsActivated = charMap[char] || {};
 	for (const segmentId of ALL_SEGMENTS) {
-		(segmentElement.getElementById(segmentId) as GraphicsElement).class =
+		(element.getElementById(segmentId) as GraphicsElement).class =
 			segmentId in segmentsActivated ? classNames.on : classNames.off;
 	}
 };
@@ -56,53 +55,16 @@ const render = (
 const HEIGHT = 218;
 const WIDTH = 122;
 
-export default (
-	root: Element,
-	{
-		charMap,
-		classNames,
-		height,
-		width,
-	}: {
-		charMap: CharMap;
-		classNames: ClassNames;
-		height: number;
-		width: number;
-	},
+export const resize = (
+	element: Element,
+	{ height, width }: { height: number; width: number },
 ) => {
 	const { groupTransform } = byId(
 		'7-segment-display-group',
-		root,
+		element,
 	) as GroupElement;
-	let value = '';
-	const updateSize = () => {
-		if (groupTransform) {
-			groupTransform.scale.x = width / WIDTH;
-			groupTransform.scale.y = height / HEIGHT;
-		}
-	};
-	updateSize();
-	return {
-		get value() {
-			return value;
-		},
-		set value(newValue: string) {
-			value = newValue[0];
-			render(root, charMap, classNames, value);
-		},
-		get height() {
-			return height;
-		},
-		set height(value: number) {
-			height = value;
-			updateSize();
-		},
-		get width() {
-			return width;
-		},
-		set width(value: number) {
-			width = value;
-			updateSize();
-		},
-	};
+	if (groupTransform) {
+		groupTransform.scale.x = width / WIDTH;
+		groupTransform.scale.y = height / HEIGHT;
+	}
 };
