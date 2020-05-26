@@ -1,4 +1,4 @@
-# Confirm dialog
+# 7-Segment display
 
 A classic 7-display component.
 You can pass it a char map to a combination of activated segments.
