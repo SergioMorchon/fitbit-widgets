@@ -29,20 +29,21 @@ You can pass it a char map to a combination of activated segments.
 
 ```typescript
 import { byId } from 'fitbit-widgets/dist/document';
-import { resize, print } from 'fitbit-widgets/dist/7-segment-display';
+import segmentDisplay from 'fitbit-widgets/dist/7-segment-display';
 import digits from 'fitbit-widgets/dist/7-segment-display/digits';
 
-const displayElement = byId('display');
-resize(displayElement, {
+const displayElement = segmentDisplay(byId('display'), {
+	charMap: digits,
 	height: 205,
 	width: 110,
-});
-print(displayElement, '7', {
-	charMap: digits,
-	setVisibility: (element, on) => {
-		element.class = on ? 'on' : 'off';
+	visible: true,
+	value: '7',
+	updateSegment: (segment, on) => {
+		segment.class = on ? 'on' : 'off';
 	},
 });
+
+displayElement.value = '9';
 ```
 
 # Screenshot
