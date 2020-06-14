@@ -10,15 +10,15 @@ const resourcesPackagePath = pkg.name;
 /**
  * @param {string} str
  */
-const snakeToCamel = str =>
-	str.replace(/([-_][a-z])/g, group =>
+const snakeToCamel = (str) =>
+	str.replace(/([-_][a-z])/g, (group) =>
 		group.toUpperCase().replace('-', '').replace('_', ''),
 	);
 
 /**
  * @param {string} widgetName
  */
-exports.install = widgetName => {
+exports.install = (widgetName) => {
 	const widget = Array.from(getWidgets()).find(
 		({ name }) => name === widgetName,
 	);

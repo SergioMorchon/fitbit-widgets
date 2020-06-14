@@ -22,8 +22,13 @@ interface Options {
 /**
  * Opens a dialog and returns a promise that will be filled with the option the user chooses
  */
-export const open = ({ header, copy, positive, negative }: Options) =>
-	new Promise<boolean>(resolve => {
+export const open = ({
+	header,
+	copy,
+	positive,
+	negative,
+}: Options): Promise<boolean> =>
+	new Promise((resolve) => {
 		const root = byId('confirm-dialog') as GraphicsElement;
 		byId('header/text', root).text = header;
 		byId('copy/text', root).text = copy;
