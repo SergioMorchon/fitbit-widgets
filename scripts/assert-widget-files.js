@@ -2,7 +2,7 @@ const { join } = require('path');
 const { walkWidgets } = require('./walk-widgets');
 const { walkFiles } = require('./walk-files');
 
-const requiredFiles = ['index.ts', 'index.gui', join('doc', 'README.md')];
+const requiredFiles = ['index.ts', 'index.defs', join('doc', 'README.md')];
 
 for (const widget of walkWidgets()) {
 	const files = new Set(walkFiles(widget.path));
