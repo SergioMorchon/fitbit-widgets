@@ -3,13 +3,13 @@
 A classic 7-display component.
 You can pass it a char map to a combination of activated segments.
 
-**index.gui**
+**index.defs**
 
 ```
 <svg>
 	<defs>
 		<link rel="stylesheet" href="fitbit-widgets/7-segment-display/index.css" />
-		<link rel="import" href="fitbit-widgets/7-segment-display/index.gui" />
+		<link rel="import" href="fitbit-widgets/7-segment-display/index.defs" />
 	</defs>
 	<use id="display" href="#7-segment-display" />
 </svg>

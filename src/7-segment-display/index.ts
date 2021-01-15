@@ -33,7 +33,7 @@ export const print = (
 	}
 };
 
-// Based on the GUI segments
+// Based on the UI segments
 const HEIGHT = 218;
 const WIDTH = 122;
 

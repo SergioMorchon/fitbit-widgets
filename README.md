@@ -28,7 +28,7 @@ Add a folder inside `src/` with the name of the widget.
 There we have different type of files:
 
 - `index.ts` with the runtime code.
-- `index.gui` file with the main UI code.
+- `index.defs` file with the main UI code.
 - A `doc/` folder with:
   - A screenshot from the Fibit emulator showing the widget.
   - A `README.md` file explaining what the widget does, including the screenshot.
