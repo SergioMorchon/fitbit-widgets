@@ -3,10 +3,8 @@
 	"version": "1.0.0",
 	"description": "Widgets for Fitbit SDK applications",
 	"bin": "bin/index.js",
-	"files": [
-		"dist",
-		"bin"
-	],
+	"main": "dist",
+	"types": "dist",
 	"scripts": {
 		"prettier": "prettier **/*.js **/*.ts **/*.json **/*.md **/*.defs -l",
 		"lint": "eslint --max-warnings 0 **/*.ts **/*.js",

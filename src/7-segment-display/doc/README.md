@@ -30,9 +30,9 @@ You can pass it a char map to a combination of activated segments.
 **index.js**
 
 ```javascript
-import { byId } from 'fitbit-widgets/dist/document';
-import segmentDisplay from 'fitbit-widgets/dist/7-segment-display';
-import digits from 'fitbit-widgets/dist/7-segment-display/digits';
+import { byId } from 'fitbit-widgets/document';
+import segmentDisplay from 'fitbit-widgets/7-segment-display';
+import digits from 'fitbit-widgets/7-segment-display/digits';
 
 const displayElement = segmentDisplay(byId('display'), {
 	charMap: digits,
