@@ -17,7 +17,7 @@ if (!commandName || commandName === 'help') {
 try {
 	const command = commands[commandName];
 	if (!command) {
-		throw new Error(`Unknown command: ${command}`);
+		throw new Error(`Unknown command: ${commandName}`);
 	}
 
 	command();
