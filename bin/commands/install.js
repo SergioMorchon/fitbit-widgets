@@ -57,7 +57,7 @@ exports.install = (widgetName) => {
 		[
 			`Widget ${widgetName} installed in your project.`,
 			`To use it from:`,
-			`\t- resources/: <link rel="import" href="${resourcesPackagePath}/${widgetName}/index.gui" /> to your <defs>`,
+			`\t- resources/: <link rel="import" href="${resourcesPackagePath}/${widgetName}/index.defs" /> to your <defs>`,
 			`\t- app/: import * as ${snakeToCamel(widgetName)} from '${
 				pkg.name
 			}/dist/${widgetName}'\n`,
