@@ -62,12 +62,8 @@ export const setVisibility = (
 	visibility: VisibilityOptions,
 ): void => {
 	for (let i = 0; i < SEGMENTS_COUNT; i++) {
-		(byId(
-			`${i}`,
-			element,
-		) as GraphicsElement).style.visibility = visibility.visible
-			? 'visible'
-			: 'hidden';
+		(byId(`${i}`, element) as GraphicsElement).style.visibility =
+			visibility.visible ? 'visible' : 'hidden';
 	}
 };
 
