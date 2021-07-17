@@ -12,17 +12,19 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
-        node_version: [12]
+        node_version: [14]
     name: CI on NodeJS v${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     steps:
       - run: git config --global core.autocrlf false
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node_version }}
-      - run: npm ci
-      - run: npm run prepublishOnly
+      - run: yarn install --immutable --immutable-cache
+      - run: yarn check-code
+      - run: yarn check-widgets-files
+      - run: yarn build
       - uses: actions/upload-artifact@master
         with:
           name: widgets
