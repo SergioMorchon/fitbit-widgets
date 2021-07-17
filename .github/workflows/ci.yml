@@ -22,9 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - run: yarn install --immutable --immutable-cache
-      - run: yarn check-code
-      - run: yarn check-widgets-files
-      - run: yarn build
+      - run: yarn prepublishOnly
       - uses: actions/upload-artifact@master
         with:
           name: widgets
