@@ -1,9 +1,15 @@
 <defs>
-  <link rel="stylesheet" href="styles.css" />
+	<link rel="stylesheet" href="styles.css" />
 
-  <symbol id="text-rect" type="text-rect" class="text-rect" width="0" height="0" >
-    <rect id="rect" />
-    <text id="text" />
-    <text id="config" text-length="80" display="none" />
-  </symbol>
+	<symbol
+		id="text-rect"
+		type="text-rect"
+		class="text-rect"
+		width="0"
+		height="0"
+	>
+		<rect id="rect" />
+		<text id="text" />
+		<text id="config" text-length="80" display="none" />
+	</symbol>
 </defs>
