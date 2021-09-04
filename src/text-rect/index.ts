@@ -1,4 +1,3 @@
-import * as config from './config';
 import { constructWidgets, getConfig } from './widget_utils';
 
 export const constructTextRect = el => {
@@ -49,10 +48,3 @@ export const constructTextRect = el => {
 
   el.redraw();
 }
-
-export const constructTextRects = parentEl => {
-  // Constructs all text-rect widgets within parentEl ElementSearch.
-  constructWidgets('text-rect', constructTextRect);
-}
-
-if (config.autoConstruct) constructTextRects();
