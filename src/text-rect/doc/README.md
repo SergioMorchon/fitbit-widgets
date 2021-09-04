@@ -48,11 +48,12 @@ A `<Text>` inside a `<Rect>`. The `<Rect>` automatically resizes to accommodate 
 
 **index.js**
 
-```javascript
-import 'fitbit-widgets/dist/text_rect';
+```typescript
+import { byId } from 'fitbit-widgets/dist/document';
+import textRect from 'fitbit-widgets/dist/text-rect';
 
-const myTextRectEl = document.getElementById('myTextRect');
-myTextRectEl.text = 'New text.';
+const myTextRect = textRect(byId('myTextRect') as GraphicsElement);
+myTextRect.text = 'New text.';
 ```
 
 # Demo

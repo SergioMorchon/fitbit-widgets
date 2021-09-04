@@ -1,10 +1,14 @@
-import { constructWidgets, getConfig } from './widget_utils';
+import { byId } from '../document';
+import { getConfig } from './widget-utils';
 
-export const constructTextRect = (el) => {
-	el.class = el.class; // bring forward (ie, trigger) application of CSS styles
+type TextRectWidget = {
+	text: string;
+	redraw(): void;
+};
 
-	const textEl = el.getElementById('text');
-	const rectEl = el.getElementById('rect');
+export default (el: GraphicsElement): TextRectWidget => {
+	const textEl = byId('text', el) as TextElement;
+	const rectEl = byId('rect', el) as RectElement;
 	// Because the following attributes are set only when the widget is constructed, they won't respond to subsequent changes.
 	let paddingLeft = 5,
 		paddingRight = 5,
@@ -30,7 +34,7 @@ export const constructTextRect = (el) => {
 		}
 	}
 
-	el.redraw = () => {
+	const redraw = () => {
 		// This function must be called when .style.display is changed from 'none'. This can be done directly or via some other API function.
 		if (el.style.display === 'none') return;
 
@@ -47,12 +51,16 @@ export const constructTextRect = (el) => {
 		rectEl.height = bbox.height + paddingTop + paddingBottom;
 	};
 
-	Object.defineProperty(el, 'text', {
-		set: function (newValue) {
-			textEl.text = newValue;
-			el.redraw();
-		},
-	});
+	redraw();
 
-	el.redraw();
+	return {
+		redraw,
+		get text() {
+			return textEl.text;
+		},
+		set text(text) {
+			textEl.text = text;
+			redraw();
+		},
+	};
 };
