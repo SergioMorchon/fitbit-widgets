@@ -13,8 +13,7 @@
 		"check-code": "npm run lint && npm run prettier",
 		"fix-code": "npm run lint -- --fix && npm run prettier -- --write",
 		"build": "rimraf dist && tsc -p src --outDir dist && node scripts/build-assets",
-		"check-widgets-files": "node scripts/assert-widget-files",
-		"prepublishOnly": "npm run check-code && npm run check-widgets-files && npm run build"
+		"check-widgets-files": "node scripts/assert-widget-files"
 	},
 	"author": "Sergio Morchón Poveda",
 	"license": "ISC",
